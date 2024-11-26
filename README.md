@@ -13,18 +13,17 @@ This script allows you to scan files in a directory (including subdirectories) t
 
 ## Installation
 
-To run this script, you need Python 3
+To run this script, you need Python 3.
 
 Install Python 3 from [python.org](https://www.python.org/downloads/) (if you haven't already).
-
 
 ## Usage
 
 To run the script, use the following command:
 
-````
+```
 python3 scanner.py /path/to/scan /path/to/output.txt --threshold 0.2 --workers 4 --extension jpg,mp4 --delete
-````
+```
 
 ### Arguments:
 
@@ -39,16 +38,29 @@ python3 scanner.py /path/to/scan /path/to/output.txt --threshold 0.2 --workers 4
 
 To scan a directory and save the results to an output file, using 4 threads and checking for `.jpg` and `.mp4` files:
 
-````
+```
 python3 scanner.py /path/to/scan /path/to/output.txt --threshold 0.1 --workers 4 --extension jpg,mp4
-````
+```
 
 If you want to delete the corrupted files as well:
 
-````
+```
 python3 scanner.py /path/to/scan /path/to/output.txt --threshold 0.1 --workers 4 --extension jpg,mp4 --delete
-````
+```
 
+### Docker Installation (Optional)
+
+If you prefer to run this script in a Docker container, you can use the pre-built Docker image that we host. This way, you don't need to worry about creating a Dockerfile or managing dependencies yourself.
+
+   **Run the Docker container**:
+
+After pulling the image, you can run the container with this command:
+
+```
+docker run -v /path/to/scan:/scan -v /path/to/output.txt:/output.txt ghcr.io/bartixxx32/filescannernullbytechecker:latest python scanner.py --threshold 0.2 --workers 4 --extension jpg,mp4
+```
+
+Replace `/path/to/scan` with the directory you want to scan and `/path/to/output.txt` with the location for the output file.
 ## How it Works
 
 1. **File Scan**: The script recursively scans the specified directory for files matching the given extensions.
